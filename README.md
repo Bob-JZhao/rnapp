@@ -40,6 +40,9 @@ Release update -> appcenter codepush release-react -a <ownerName>/<appName> -d <
 
 They do have a rollback command, but tired and seems does not work, and the good solution is release a new development.
 
+List codepush history -> appcenter codepush deployment history -a <ownerName>/<appName> <deploymentName>
+
+
 
 Android set-up
 
