@@ -8,7 +8,29 @@
 
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import Analytics from "appcenter-analytics";
+import Crashes from "appcenter-crashes";
+Crashes.setListener({
+  getErrorAttachments(report) {
+    return (async () => {
+      const textContent = await readTextFileAsync(); // use your async function to read text file
+      const binaryContent = await readBinaryFileAsync(); // use your async function to read binary file
+      const textAttachment = ErrorAttachmentLog.attachmentWithText(
+        textContent,
+        "hello.txt"
+      );
+      const binaryAttachment = ErrorAttachmentLog.attachmentWithBinary(
+        binaryContent,
+        "logo.png",
+        "image/png"
+      );
+      return [textAttachment, binaryAttachment];
+    })();
+  }
 
+  // Other callbacks must also be defined at the same time if used.
+  // Default values are used if a method with return parameter is not defined.
+});
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
   android:
@@ -18,7 +40,28 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  componentDidMount() {
+    // Crashes.generateTestCrash();
+    setTimeout(this.crashTest, 50000);
+  }
+
+  crashTest() {
+    throw new Error("This is a test javascript crash!");
+  }
   render() {
+    Analytics.trackEvent("App open", {
+      Category: "Open",
+      FileName: "favorite.avi"
+    });
+
+    Analytics.trackEvent("App close", {
+      Category: "Close",
+      FileName: "close.avi"
+    });
+    Crashes.generateTestCrash();
+
+    // throw new Error("This is a test javascript crash!");
+
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
