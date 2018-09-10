@@ -4,22 +4,38 @@
 Management CLi commands:
 
 Login ->appcenter login
+
 List profile -> appcenter profile list
+
 Logout-> appcenter logout
+
 List tokens ->appcenter tokens list
+
 Create Token -> appcenter tokens create -d "NEW_TOKEN_NAME"
+
 Create Apps -> appcenter apps create -d <appDisplayName> -o <operatingSystem>  -p <platform> 
+ 
  (ie:appcenter apps create -d MyApp-Android -o Android -p React-Native)
+ 
 Add deployments -> appcenter codepush deployment add -a <ownerName>/<appName> Staging
-                appcenter codepush deployment add -a <ownerName>/<appName> Production
+ 
+ 
+appcenter codepush deployment add -a <ownerName>/<appName> Production
+                
 With the original CodePush, apps automatically had two deployments (Staging and Production). 
   
 Rename app names -> appcenter apps update -n <newName> -a <ownerName>/<appName>
+ 
 Delete Apps -> appcenter apps delete -a <ownerName>/<appName>
+ 
 List Apps -> appcenter apps list
+
 Remove deployment -> appcenter codepush deployment remove -a <ownerName>/<appName> <deploymentName>
+ 
 Rename deployment -> appcenter codepush deployment rename -a <ownerName>/<appName> <deploymentName> <newDeploymentName>
+ 
 List deployments -> appcenter codepush deployment list -a <ownerName>/<appName>
+ 
 Release update -> appcenter codepush release-react -a <ownerName>/<appName> -d <deploymentName> -t <targetBinaryVersion> 
 
 They do have a rollback command, but tired and seems does not work, and the good solution is release a new development.
