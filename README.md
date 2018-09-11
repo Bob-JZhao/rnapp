@@ -1,3 +1,10 @@
+# Starter kit for react-native app
+
+> This doc is for:
+
+- People wanting to creat a new RN app
+- Integrating AppCenter SKD
+
 # rnapp
 
 
