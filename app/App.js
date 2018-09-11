@@ -7,58 +7,48 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity
+} from "react-native";
 import Analytics from "appcenter-analytics";
 import Crashes from "appcenter-crashes";
-Crashes.setListener({
-  getErrorAttachments(report) {
-    return (async () => {
-      const textContent = await readTextFileAsync(); // use your async function to read text file
-      const binaryContent = await readBinaryFileAsync(); // use your async function to read binary file
-      const textAttachment = ErrorAttachmentLog.attachmentWithText(
-        textContent,
-        "hello.txt"
-      );
-      const binaryAttachment = ErrorAttachmentLog.attachmentWithBinary(
-        binaryContent,
-        "logo.png",
-        "image/png"
-      );
-      return [textAttachment, binaryAttachment];
-    })();
-  }
+import codePush from "react-native-code-push";
 
-  // Other callbacks must also be defined at the same time if used.
-  // Default values are used if a method with return parameter is not defined.
-});
 const instructions = Platform.select({
-  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
+  ios:
+    "Press Cmd+R to reload,\n" +
+    "hellocodepush \n" +
+    "Cmd+D or shake for dev menu e sdfsd  dseewewwe weeewwe \n",
   android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
+    "Grace is very beautiful and I agree with this xodso ,\n" + "come on !!!!"
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
+
+class App extends Component {
   componentDidMount() {
     // Crashes.generateTestCrash();
-    setTimeout(this.crashTest, 50000);
   }
 
-  crashTest() {
-    throw new Error("This is a test javascript crash!");
+  onButtonPress() {
+    codePush.sync({
+      updateDialog: true,
+      installMode: codePush.InstallMode.IMMEDIATE
+    });
+    console.log(codePush);
   }
+
   render() {
     Analytics.trackEvent("App open", {
       Category: "Open",
       FileName: "favorite.avi"
     });
 
-    Analytics.trackEvent("App close", {
-      Category: "Close",
-      FileName: "close.avi"
-    });
-    Crashes.generateTestCrash();
+    //Crashes.generateTestCrash();
 
     // throw new Error("This is a test javascript crash!");
 
@@ -69,6 +59,10 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>Test ... </Text>
 
         <Text style={styles.instructions}>{instructions}</Text>
+
+        <TouchableOpacity onPress={this.onButtonPress}>
+          <Text>Check for updates</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -92,3 +86,5 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export default (App = codePush(codePushOptions)(App));

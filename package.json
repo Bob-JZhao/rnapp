@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "bundle:android": "react-native bundle --entry-file index.js --bundle-output ./android/app/src/main/assets/main.jsbundle --dev false --platform android --assets-dest ./android/app/src/main/res/",
+    "bundle:ios": "react-native bundle --entry-file index.js --bundle-output ./ios/rnapp/main.jsbundle --dev false --platform ios --assets-dest ./ios",
+    "test": "jest",
+    "copy:ios": "curl http://localhost:8081/index.ios.bundle?platform=ios -o ./ios/CassiCoupon/main.jsbundle",
+    "copy:android": "curl http://localhost:8081/index.android.bundle?platform=android -o ./android/app/src/main/assets/index.android.bundle",
+    "build:android": "npm run clear:android && npm run copy:android && npm run bundle:android",
+    "clear:android": "rm -rf ./android/app/src/main/assets/*.*"
   },
   "dependencies": {
     "appcenter": "^1.8.1",
