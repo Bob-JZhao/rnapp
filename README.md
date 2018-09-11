@@ -5,7 +5,26 @@
 - People wanting to creat a new RN app
 - Integrating AppCenter SKD
 
-# rnapp
+# Create new App
+
+>
+
+First, run react-native command to create a new project
+
+```sh
+react-native init app-name
+```
+
+## test app
+
+Should get the app running after this command 
+
+```sh
+react-native run-ios
+react-native run-android
+```
+
+
 
 
 Management CLi commands:
