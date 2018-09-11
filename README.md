@@ -82,3 +82,5 @@ After add above script , run ## pod install
  
  Run delpoyment list to retrieve the deployment key
   ## appcenter codepush deployment list -a <ownerName>/<appName>  
+ 
+ App Center can only upload new versions to existing apps that are already published on the App Store or TestFlight.
