@@ -52,7 +52,7 @@ class App extends Component {
 
     // throw new Error("This is a test javascript crash!");
     // change one
-
+    // change two
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
