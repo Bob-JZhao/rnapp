@@ -15,19 +15,119 @@ First, run react-native command to create a new project
 react-native init app-name
 ```
 
-## test app
+## Get app running
 
-Should get the app running after this command 
+Should get the app running after excuting this command 
 
 ```sh
 react-native run-ios
 react-native run-android
+
+```
+## More Scripts
+
+You can check all common used scripts in package.json via [common scripts ](http://example.com/ "Title")  
+
+[This link](http://example.net/) has no title attribute. 
+
+#Integrate Appcenter SDK
+
+First you should create new apps in [AppCenter](https://appcenter.ms/)
+
+## Add crash report
+First add dependecies
+
+```sh
+yarn add appcenter appcenter-analytics appcenter-crashes
+
 ```
 
+Link to project
+
+```sh
+react-native link
+```
+
+AppCenter [sdk get start](https://docs.microsoft.com/en-us/appcenter/sdk/getting-started/react-native)
+
+#Use App Center CLI
+
+Install App Center CLI in local
+
+```sh
+npm install -g appcenter-cli
+```
+More infomation [App Center CLI](https://docs.microsoft.com/en-us/appcenter/distribution/codepush/)
+
+
+Checkout more scripts via [Management CLI](link to cli doc)
+
+## App Center Code push
+
+First install code push 
+
+```sh
+npm install --save react-native-code-push
+```
+
+Then link libs
+
+```sh
+react-native link react-native-code-push
+```
+###Plugin Installation (iOS - CocoaPods)
+
+1. Add the React Native and CodePush plugin dependencies to your Podfile, pointing at the path where NPM has installed modules
+
+	```
+	# React Native requirements
+	pod 'React', :path => '../node_modules/react-native', :subspecs => [
+	   'Core',
+	   'CxxBridge', # Include this for RN >= 0.47
+	   'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
+	   'RCTText',
+	   'RCTNetwork',
+	   'RCTWebSocket', # Needed for debugging
+	   'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+	   # Add any other subspecs you want to use in your project
+	]
+	# Explicitly include Yoga if you are using RN >= 0.42.0
+	pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+	pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+	pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+	pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+	
+	# CodePush plugin dependency
+	pod 'CodePush', :path => '../node_modules/react-native-code-push'
+	```
+
+2. Run pod install
+
+#### Manually install
+
+[Plugin Installation (iOS - Manual) ](https://docs.microsoft.com/en-us/appcenter/distribution/codepush/react-native#plugin-installation-ios---manual)
+
+### Plugin Installation(Android)
+
+Basicly you do not need to change anything
+
+[Android Setup](https://docs.microsoft.com/en-us/appcenter/distribution/codepush/react-native#android-setup)
 
 
 
-Management CLi commands:
+### Windows setup
+
+[Windows Setup](https://docs.microsoft.com/en-us/appcenter/distribution/codepush/react-native#windows-setup)
+
+### Release new deployment to App Center
+
+After code change, can run this to push code to app center 
+
+```appcenter 
+appcenter codepush release-react -a <ownerName>/<appName> 
+
+```
+
 
 Login ->appcenter login
 
