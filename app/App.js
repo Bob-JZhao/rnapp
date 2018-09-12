@@ -37,6 +37,7 @@ class App extends Component {
   onButtonPress() {
     codePush.sync({
       updateDialog: true,
+
       installMode: codePush.InstallMode.IMMEDIATE
     });
     console.log(codePush);
