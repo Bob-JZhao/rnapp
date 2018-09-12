@@ -51,7 +51,7 @@ class App extends Component {
 
     //Crashes.generateTestCrash();
 
-    // throw new Error("This is a test javascript crash!");
+    // I changed something xxxx
 
     return (
       <View style={styles.container}>
